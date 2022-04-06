@@ -39,10 +39,8 @@ public class Player : MonoBehaviour
     IEnumerator ShowTime()
     {
         while (true)
-        { 
-            
+        {
             yield return new WaitForSeconds(1);
-            Debug.Log(Time.time);
         }
     }
 
