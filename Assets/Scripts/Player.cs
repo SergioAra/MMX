@@ -10,13 +10,19 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpForce = 5f;
     private bool isInAir = false;
     private bool isActive = false;
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private float fireDelay = 1;
+    private float lastFireTime = 0;
+    [SerializeField] private float fireAnimHoldTime = 1;
+    private HealthComp healthComp;
+    [SerializeField] private AudioClip fireSound;
+
     // Start is called before the first frame update
     void Start()
     {
         myBody = GetComponent<Rigidbody2D>();
         myAnim = GetComponent<Animator>();
-
-        StartCoroutine(ShowTime());
+        healthComp = GetComponent<HealthComp>();
     }
 
     // Update is called once per frame
@@ -36,12 +42,10 @@ public class Player : MonoBehaviour
 
     }
 
-    IEnumerator ShowTime()
+    IEnumerator MaintainFireAnimAfterLastShot()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(1);
-        }
+        yield return new WaitForSeconds(fireAnimHoldTime);
+        myAnim.SetLayerWeight(1, 0);
     }
 
     void Jump()
@@ -64,17 +68,31 @@ public class Player : MonoBehaviour
 
     void Fire()
     {
-        if (Input.GetKey(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
+            StopCoroutine(nameof(MaintainFireAnimAfterLastShot));
             myAnim.SetLayerWeight(1, 1);
-        }
-        else
-        {
-            myAnim.SetLayerWeight(1, 0);
+            
+            if (Time.time > fireDelay + lastFireTime)
+            {
+                GameObject firedBullet = Instantiate(bullet, transform.position, transform.rotation);
+                if (firedBullet)
+                {
+                    Bullet fired = firedBullet.GetComponent<Bullet>();
+                    if (fired)
+                    {
+                        AudioSource.PlayClipAtPoint(fireSound, transform.position);
+                        fired.SetFireDirection(new Vector2((transform.localScale.x < 0f ? -1f : 1f), 0f));
+                        fired.SetOwner(gameObject);
+                    }
+                }
+                lastFireTime = Time.time;
+            }
+            StartCoroutine(nameof(MaintainFireAnimAfterLastShot));
         }
     }
 
-    void IntroAnimEnd()
+    private void IntroAnimEnd()
     {
         isActive = true;
     }
@@ -92,14 +110,7 @@ public class Player : MonoBehaviour
         if (xValue != 0f)
         {
             myAnim.SetBool("isRunning", true);
-            if (xValue < 0f)
-            {
-                transform.localScale = new Vector2(-1f, 1f);
-            }
-            else
-            {
-                transform.localScale = new Vector2(1f, 1f);
-            }
+            transform.localScale = new Vector2((xValue < 0f ? -1f : 1f), 1f);
         }
         else
         {
@@ -107,5 +118,13 @@ public class Player : MonoBehaviour
         }
 
         myBody.velocity = new Vector2(xValue * speed, myBody.velocity.y);
+    }
+    
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.layer == 9)
+        {
+            healthComp.RecieveDamage(1);
+        }
     }
 }

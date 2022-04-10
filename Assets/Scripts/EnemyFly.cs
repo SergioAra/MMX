@@ -5,13 +5,14 @@ using UnityEngine;
 using Pathfinding;
 public class EnemyFly : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
     [SerializeField] private float followRadius = 8f;
     private bool bFollowPlayer;
     private AIPath myPath;
+    private HealthComp healthComp;
     void Start()
     {
         myPath = GetComponent<AIPath>();
+        healthComp = GetComponent<HealthComp>();
     }
 
     // Update is called once per frame
@@ -45,5 +46,13 @@ public class EnemyFly : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, followRadius);
+    }
+    
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Bullet")
+        {
+            healthComp.RecieveDamage(1);
+        }
     }
 }

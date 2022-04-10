@@ -15,7 +15,9 @@ GameObject:
   - component: {fileID: 1055227552224226954}
   - component: {fileID: -7900203988861555963}
   - component: {fileID: 7447744635137576134}
-  m_Layer: 0
+  - component: {fileID: 3708349009511675053}
+  - component: {fileID: 7278928858089459741}
+  m_Layer: 9
   m_Name: EnemyFly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32ccf32dbce6a7049a96d2a3d4f55035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 6419154180787289511, guid: f407bb64a6f32204a81721b3f8e42e0c, type: 3}
   followRadius: 11
 --- !u!114 &1055227552224226954
 MonoBehaviour:
@@ -207,3 +209,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
+--- !u!114 &3708349009511675053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8885969617028014042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13460af0c16029a498f818aff4a4667c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+--- !u!58 &7278928858089459741
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8885969617028014042}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.7
