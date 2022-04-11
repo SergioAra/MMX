@@ -154,6 +154,7 @@ MonoBehaviour:
   fireDelay: 0.1
   fireAnimHoldTime: 2
   fireSound: {fileID: 8300000, guid: b29261506e66b9a4ea3b6cd01bb01077, type: 3}
+  deathSound: {fileID: 8300000, guid: 39dfe36c3f47ed442a992f0675e23f20, type: 3}
 --- !u!95 &6419154180787289505
 Animator:
   serializedVersion: 4

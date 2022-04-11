@@ -41,6 +41,15 @@ public class EnemyFly : MonoBehaviour
            myPath.isStopped = true;
        }
     }
+    
+    private void FixedUpdate()
+    {
+        float xValue = myPath.desiredVelocity.x;
+        if (xValue != 0f)
+        {
+            transform.localScale = new Vector2((xValue < 0f ? 1f : -1f), 1f);
+        }
+    }
 
     private void OnDrawGizmos()
     {
@@ -52,7 +61,12 @@ public class EnemyFly : MonoBehaviour
     {
         if (col.gameObject.tag == "Bullet")
         {
-            healthComp.RecieveDamage(1);
+            healthComp.ReceiveDamage(1);
         }
+    }
+    
+    private void DestroyAfterAnim()
+    {
+        Destroy(gameObject);
     }
 }

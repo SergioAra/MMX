@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float fireAnimHoldTime = 1;
     private HealthComp healthComp;
     [SerializeField] private AudioClip fireSound;
+    [SerializeField] private AudioClip deathSound;
+    private bool destroyedAfterAnim = false;
 
     // Start is called before the first frame update
     void Start()
@@ -124,7 +127,34 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.layer == 9)
         {
-            healthComp.RecieveDamage(1);
+            healthComp.ReceiveDamage(1);
         }
     }
+    
+    private void DestroyAfterAnim()
+    {
+        if (destroyedAfterAnim)
+        {
+            return;
+        }
+        destroyedAfterAnim = true;
+        Time.timeScale = 0f;
+        StartCoroutine(nameof(PauseAfterDestroy));
+    }
+    
+    IEnumerator PauseAfterDestroy()
+    {
+        yield return new WaitForSecondsRealtime(1);
+        AudioSource.PlayClipAtPoint(deathSound, transform.position);
+        StartCoroutine(nameof(ReloadLevelAfterPause));
+    }
+    
+    IEnumerator ReloadLevelAfterPause()
+    {
+        yield return new WaitForSecondsRealtime(1);
+        Time.timeScale = 1f;
+        Scene scene = SceneManager.GetActiveScene(); 
+        SceneManager.LoadScene(scene.name);
+    }
+    
 }
