@@ -67,6 +67,7 @@ public class EnemyFly : MonoBehaviour
     
     private void DestroyAfterAnim()
     {
+       
         Destroy(gameObject);
     }
 }

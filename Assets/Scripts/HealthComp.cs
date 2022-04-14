@@ -49,15 +49,19 @@ public class HealthComp : MonoBehaviour
             {
                 objectPath.enabled = false;
             }
-            
+
+
             Animator objectAnimator = gameObject.GetComponent<Animator>();
             if (objectAnimator)
             {
                 objectAnimator.SetBool("Destroyed", true);
             }
+
+            
             else
             {
-                Destroy(gameObject);
+                 Destroy(gameObject);
+                
             }
         }
         else
