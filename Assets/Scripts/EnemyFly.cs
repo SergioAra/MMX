@@ -9,16 +9,29 @@ public class EnemyFly : MonoBehaviour
     private bool bFollowPlayer;
     private AIPath myPath;
     private HealthComp healthComp;
+    static AudioSource audioSrc;
+    public static AudioClip mosquito;
+    Animator objectAnimator;
     void Start()
     {
         myPath = GetComponent<AIPath>();
         healthComp = GetComponent<HealthComp>();
+        mosquito = Resources.Load<AudioClip>("mosquito");
+        audioSrc = GetComponent<AudioSource>();
+        audioSrc.loop = true;
+        audioSrc.clip = mosquito;
+        audioSrc.Play();
+        objectAnimator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         ChangeFollowPlayer();
+        if (objectAnimator.GetBool("Destroyed") == true)
+        {
+            SoundManager.PlaySound("MosquitoDeath");
+        }
     }
 
     void ChangeFollowPlayer()

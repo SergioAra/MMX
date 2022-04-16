@@ -35,6 +35,7 @@ public class TurretBullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         //SoundManager.PlaySound("bulletImpact");
+        SoundManager.PlaySound("BulletExplode");
         myAnim.SetBool("Destroyed", true);
         myBody.velocity = new Vector2(0f, 0f);
         myBody.simulated = false;

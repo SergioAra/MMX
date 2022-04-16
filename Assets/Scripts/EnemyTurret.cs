@@ -12,6 +12,7 @@ public class EnemyTurret : MonoBehaviour
     private HealthComp healthComp;
     private float lastFireTime = 0;
     Animator objectAnimator;
+    bool explode = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +40,7 @@ public class EnemyTurret : MonoBehaviour
                     GameObject firedBullet = Instantiate(turretBullet, transform.position, transform.rotation);
                     if (firedBullet)
                     {
+                        SoundManager.PlaySound("EnemyShot");
                         TurretBullet fired = firedBullet.GetComponent<TurretBullet>();
                         if (fired)
                         {
@@ -48,6 +50,14 @@ public class EnemyTurret : MonoBehaviour
 
                     lastFireTime = Time.time;
                 }
+            }
+        }
+        else
+        {
+            if (!explode)
+            {
+                SoundManager.PlaySound("GroundEnemyExplosion");
+                explode = true;
             }
         }
     }

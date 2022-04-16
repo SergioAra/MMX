@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
         {
             myAnim.SetBool("Jumped", true);
             myBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            SoundManager.PlaySound("Jump");
         }
         else
         {
