@@ -85,7 +85,8 @@ public class Player : MonoBehaviour
                     Bullet fired = firedBullet.GetComponent<Bullet>();
                     if (fired)
                     {
-                        AudioSource.PlayClipAtPoint(fireSound, transform.position);
+                        //AudioSource.PlayClipAtPoint(fireSound, transform.position);
+                        SoundManager.PlaySound("PlayerBullet");
                         fired.SetFireDirection(new Vector2((transform.localScale.x < 0f ? -1f : 1f), 0f));
                         fired.SetOwner(gameObject);
                     }
@@ -146,7 +147,8 @@ public class Player : MonoBehaviour
     IEnumerator PauseAfterDestroy()
     {
         yield return new WaitForSecondsRealtime(1);
-        AudioSource.PlayClipAtPoint(deathSound, transform.position);
+        SoundManager.PlaySound("PlayerDeath");
+        //AudioSource.PlayClipAtPoint(deathSound, transform.position);
         StartCoroutine(nameof(ReloadLevelAfterPause));
     }
     

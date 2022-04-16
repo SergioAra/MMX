@@ -2,16 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthComp : MonoBehaviour
 {
     private bool destroyed = false;
     [SerializeField] private int health = 1;
-    
+    public GameObject healthBar;
+    [SerializeField] Slider slider;
+    [SerializeField] Gradient gradient;
+    [SerializeField] Image fill;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        slider.maxValue = health;
+        fill.color = gradient.Evaluate(1f);
     }
 
     // Update is called once per frame
@@ -25,6 +31,7 @@ public class HealthComp : MonoBehaviour
     {
         if (health - damage <= 0)
         {
+            
             if (destroyed)
             {
                 return;
@@ -60,13 +67,17 @@ public class HealthComp : MonoBehaviour
             
             else
             {
-                 Destroy(gameObject);
-                
+                slider.value = 0;
+                Destroy(gameObject);
             }
         }
         else
         {
             health -= damage;
+            slider.value = health;
+            fill.color = gradient.Evaluate(slider.normalizedValue);
         }
+        
     }
+
 }

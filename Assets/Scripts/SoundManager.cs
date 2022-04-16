@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
 
-    public static AudioClip enemyGroundExplosion, jump, enemyShot, bulletShot, mosquitoDeath;
+    public static AudioClip enemyGroundExplosion, jump, enemyShot, bulletShot, mosquitoDeath, queja, bullet, death;
     static AudioSource audioSrc;
     private static string LastSound;
     // Start is called before the first frame update
@@ -13,8 +13,11 @@ public class SoundManager : MonoBehaviour
     {
         enemyGroundExplosion= Resources.Load<AudioClip>("GroundEnemyExplosion");
         enemyShot = Resources.Load<AudioClip>("enemyShot");
+        queja = Resources.Load<AudioClip>("queja");
         jump = Resources.Load<AudioClip>("jump");
         bulletShot= Resources.Load<AudioClip>("shot");
+        bullet = Resources.Load<AudioClip>("bullet");
+        death = Resources.Load<AudioClip>("death");
         audioSrc = GetComponent<AudioSource>();
         mosquitoDeath = Resources.Load<AudioClip>("mosquitoDeath");
     }
@@ -45,6 +48,15 @@ public class SoundManager : MonoBehaviour
 
             case "MosquitoDeath":
                 audioSrc.PlayOneShot(mosquitoDeath);
+                break;
+            case "ManMoan":
+                audioSrc.PlayOneShot(queja);
+                break;
+            case "PlayerBullet":
+                audioSrc.PlayOneShot(bullet);
+                break;
+            case "PlayerDeath":
+                audioSrc.PlayOneShot(death);
                 break;
         }
 
