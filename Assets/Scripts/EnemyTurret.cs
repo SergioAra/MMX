@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyTurret : MonoBehaviour
@@ -7,7 +8,8 @@ public class EnemyTurret : MonoBehaviour
 
     RaycastHit2D ray;
     [SerializeField] private Vector2 direction = Vector2.left;
-    [SerializeField] private float fireDelay = 1;
+    [SerializeField] private float fireDelay = 1f;
+    [SerializeField] private float range = 15f;
     [SerializeField] private GameObject turretBullet;
     private HealthComp healthComp;
     private float lastFireTime = 0;
@@ -23,8 +25,7 @@ public class EnemyTurret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ray = Physics2D.Raycast(transform.position, direction, 15f, LayerMask.GetMask("Player"));
-        Debug.DrawRay(transform.position, direction * 15f, Color.red);
+        ray = Physics2D.Raycast(transform.position, direction, range, LayerMask.GetMask("Player"));
         Fire();
     }
 
@@ -40,6 +41,9 @@ public class EnemyTurret : MonoBehaviour
                     GameObject firedBullet = Instantiate(turretBullet, transform.position, transform.rotation);
                     if (firedBullet)
                     {
+                        Vector3 bulletScale = firedBullet.transform.localScale;
+                        bulletScale.x = transform.localScale.x;
+                        firedBullet.transform.localScale = bulletScale;
                         SoundManager.PlaySound("EnemyShot");
                         TurretBullet fired = firedBullet.GetComponent<TurretBullet>();
                         if (fired)
@@ -68,5 +72,13 @@ public class EnemyTurret : MonoBehaviour
         {
             healthComp.ReceiveDamage(1);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector3 start = transform.position;
+        Vector3 end = start + (Vector3)(direction * range);
+        Gizmos.DrawLine(start, end);
     }
 }
