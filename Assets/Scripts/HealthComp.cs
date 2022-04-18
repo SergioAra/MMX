@@ -16,8 +16,15 @@ public class HealthComp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        slider.maxValue = health;
-        fill.color = gradient.Evaluate(1f);
+        if (slider)
+        {
+            slider.maxValue = health;
+        }
+
+        if (fill)
+        {
+            fill.color = gradient.Evaluate(1f);
+        }
     }
 
     // Update is called once per frame
@@ -56,26 +63,35 @@ public class HealthComp : MonoBehaviour
             {
                 objectPath.enabled = false;
             }
-
+            
+            if (slider)
+            { 
+                slider.value = 0;
+            }
 
             Animator objectAnimator = gameObject.GetComponent<Animator>();
             if (objectAnimator)
             {
                 objectAnimator.SetBool("Destroyed", true);
             }
-
-            
             else
             {
-                slider.value = 0;
                 Destroy(gameObject);
             }
         }
         else
         {
             health -= damage;
-            slider.value = health;
-            fill.color = gradient.Evaluate(slider.normalizedValue);
+            if (slider)
+            {
+                slider.value = health;
+            }
+
+            if (fill)
+            {
+                fill.color = gradient.Evaluate(slider.normalizedValue);
+            }
+            
         }
         
     }
