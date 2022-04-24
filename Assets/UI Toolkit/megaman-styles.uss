@@ -1,0 +1,26 @@
+.megaman-btn {
+    font-size: 32px;
+    align-items: flex-end;
+    justify-content: center;
+    width: 80%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: rgba(43, 66, 178, 255);
+    height: 20%;
+}
+
+.megaman-btn:hover {
+    font-size: 32px;
+    align-items: flex-end;
+    justify-content: center;
+    width: 80%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: rgb(20, 35, 101);
+    height: 20%;
+    -unity-font-style: bold;
+}
