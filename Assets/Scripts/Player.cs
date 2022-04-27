@@ -45,12 +45,6 @@ public class Player : MonoBehaviour
 
     }
 
-    IEnumerator MaintainFireAnimAfterLastShot()
-    {
-        yield return new WaitForSeconds(fireAnimHoldTime);
-        myAnim.SetLayerWeight(1, 0);
-    }
-
     void Jump()
     {
         if (isInAir)
@@ -74,11 +68,9 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            StopCoroutine(nameof(MaintainFireAnimAfterLastShot));
-            myAnim.SetLayerWeight(1, 1);
-            
             if (Time.time > fireDelay + lastFireTime)
             {
+                myAnim.SetLayerWeight(1, 1);
                 GameObject firedBullet = Instantiate(bullet, transform.position, transform.rotation);
                 if (firedBullet)
                 {
@@ -93,7 +85,11 @@ public class Player : MonoBehaviour
                 }
                 lastFireTime = Time.time;
             }
-            StartCoroutine(nameof(MaintainFireAnimAfterLastShot));
+        }
+        
+        if (Time.time > fireAnimHoldTime + lastFireTime)
+        {
+            myAnim.SetLayerWeight(1, 0);
         }
     }
 
