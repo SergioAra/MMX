@@ -1,10 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/megaman-styles.uss?fileID=7433441132597879392&amp;guid=26630fe5b31975a4e9c41ea01494153c&amp;type=3#megaman-styles" />
-    <ui:VisualElement name="background" style="background-color: rgba(0, 0, 0, 0.62); height: 100%; width: 100%; align-items: center; justify-content: center;">
-        <ui:VisualElement name="menu" style="height: 579px; background-color: rgba(255, 255, 255, 0.67); border-top-left-radius: 30px; border-bottom-left-radius: 30px; border-top-right-radius: 30px; border-bottom-right-radius: 30px; width: 695px; justify-content: center; align-items: center;">
-            <ui:Button text="Start Game" display-tooltip-when-elided="true" name="start-btn" class="megaman-btn" />
+    <ui:VisualElement name="background" style="background-color: rgb(0, 0, 0); height: 100%; width: 100%; align-items: center; justify-content: center; background-image: resource(&apos;Images/megaman-1652539450082-3415&apos;);">
+        <ui:VisualElement style="background-image: resource(&apos;Images/Megaman Logo&apos;); width: 1115px; height: 525px; border-left-color: rgba(23, 48, 53, 0); border-right-color: rgba(23, 48, 53, 0); border-top-color: rgba(23, 48, 53, 0); border-bottom-color: rgba(23, 48, 53, 0); border-left-width: 14px; border-right-width: 14px; border-top-width: 14px; border-bottom-width: 14px; top: 50px;" />
+        <ui:Label text="Remix by Daniel Torres and Sergio Arana" display-tooltip-when-elided="true" style="-unity-font-definition: resource(&apos;Fonts/Mega-Man-Battle-Network SDF&apos;); font-size: 27px; color: rgb(255, 255, 255); top: 50px;" />
+        <ui:VisualElement name="menu" style="height: 579px; background-color: rgba(255, 255, 255, 0); border-top-left-radius: 30px; border-bottom-left-radius: 30px; border-top-right-radius: 30px; border-bottom-right-radius: 30px; width: 695px; justify-content: center; align-items: center;">
+            <ui:Button text="Start Game" display-tooltip-when-elided="true" name="start-btn" class="megaman-btn" style="-unity-font: none;" />
             <ui:Button text="Exit" display-tooltip-when-elided="true" name="exit-btn" class="megaman-btn" style="font-size: 32px; align-items: flex-end; justify-content: center; width: 80%; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; height: 20%; margin-top: 20px;" />
-            <ui:Label text="Log text" display-tooltip-when-elided="true" name="log" style="font-size: 32px; color: rgb(0, 0, 0); position: absolute; top: 21px; right: 33px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

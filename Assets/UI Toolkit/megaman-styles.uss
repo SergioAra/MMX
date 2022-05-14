@@ -7,8 +7,18 @@
     border-bottom-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-    background-color: rgba(43, 66, 178, 255);
+    background-color: rgba(43, 66, 178, 0);
     height: 20%;
+    -unity-font: resource('');
+    -unity-font-definition: resource('Fonts/Mega-Man-Battle-Network SDF');
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 154, 255, 255);
+    -unity-text-outline-color: rgba(255, 190, 6, 255);
+    -unity-text-outline-width: 0;
+    margin-bottom: 35px;
 }
 
 .megaman-btn:hover {
@@ -20,7 +30,13 @@
     border-bottom-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-    background-color: rgb(20, 35, 101);
+    background-color: rgba(20, 35, 101, 0);
     height: 20%;
     -unity-font-style: bold;
+    -unity-font: resource('');
+    color: rgba(247, 221, 54, 255);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
 }

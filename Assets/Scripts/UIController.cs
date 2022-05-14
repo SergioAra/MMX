@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
+
 
 public class UIController : MonoBehaviour
 {
@@ -16,7 +18,8 @@ public class UIController : MonoBehaviour
        exitButton = root.Q<Button>("exit-btn");
        logText = root.Q<Label>("log");
 
-       exitButton.clicked += ShowMessage;
+       exitButton.clicked += ExitGame;
+       startButton.clicked += StartGame;
     }
 
     // Update is called once per frame
@@ -25,8 +28,22 @@ public class UIController : MonoBehaviour
         
     }
     
-    void ShowMessage()
+    void  ExitGame()
     {
-        logText.text = "hello";
+
+        #if UNITY_EDITOR
+
+            UnityEditor.EditorApplication.isPlaying = false;
+
+        #else
+
+            Application.Quit();
+
+        #endif  
     }
+
+    void  StartGame()
+    {
+       SceneManager.LoadScene("Level", LoadSceneMode.Single);
+    } 
 }
