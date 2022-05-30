@@ -12,6 +12,8 @@ public class EnemyFly : MonoBehaviour
     static AudioSource audioSrc;
     public static AudioClip mosquito;
     Animator objectAnimator;
+    public static AudioClip  mosquitoDeath;
+
     void Start()
     {
         myPath = GetComponent<AIPath>();
@@ -22,6 +24,7 @@ public class EnemyFly : MonoBehaviour
         audioSrc.clip = mosquito;
         audioSrc.Play();
         objectAnimator = gameObject.GetComponent<Animator>();
+        mosquitoDeath = Resources.Load<AudioClip>("mosquitoDeath");
     }
 
     // Update is called once per frame
@@ -30,19 +33,12 @@ public class EnemyFly : MonoBehaviour
         ChangeFollowPlayer();
         if (objectAnimator.GetBool("Destroyed") == true)
         {
-            SoundManager.PlaySound("MosquitoDeath");
+            audioSrc.PlayOneShot(mosquitoDeath);
         }
     }
 
     void ChangeFollowPlayer()
     { 
-        /*
-        float distance = Vector2.Distance(transform.position, player.transform.position);
-         if(distance <= followRadius)
-         {
-            Debug.DrawRay(transform.position, player.transform.position, Color.green);
-         }
-         */
         
        Collider2D circleCol = Physics2D.OverlapCircle(transform.position, followRadius, LayerMask.GetMask("Player"));
        if (circleCol)

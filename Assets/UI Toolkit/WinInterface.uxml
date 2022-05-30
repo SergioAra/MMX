@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/megaman-styles.uss?fileID=7433441132597879392&amp;guid=26630fe5b31975a4e9c41ea01494153c&amp;type=3#megaman-styles" />
+    <ui:VisualElement name="background" style="background-color: rgb(0, 0, 0); height: 100%; width: 100%; align-items: flex-start; justify-content: center; background-image: resource(&apos;Images/Winback&apos;);">
+        <ui:VisualElement style="width: 651px; background-color: rgba(0, 0, 0, 0.64);">
+            <ui:Label text="YOU WIN" display-tooltip-when-elided="true" name="Label" style="-unity-font-definition: resource(&apos;Fonts/Mega-Man-Battle-Network SDF&apos;); font-size: 27px; color: rgb(255, 255, 255); top: 50px; left: 0; margin-left: 60px;" />
+            <ui:VisualElement name="menu" style="height: 579px; background-color: rgba(255, 255, 255, 0); border-top-left-radius: 30px; border-bottom-left-radius: 30px; border-top-right-radius: 30px; border-bottom-right-radius: 30px; width: 695px; justify-content: center; align-items: center; margin-top: 100px;">
+                <ui:Button text="PLay again" display-tooltip-when-elided="true" name="start-btn" class="megaman-btn" style="-unity-font: none; align-items: flex-start; width: 80%; -unity-text-align: middle-left; color: rgb(255, 255, 255);" />
+                <ui:Button text="Exit" display-tooltip-when-elided="true" name="exit-btn" class="megaman-btn" style="font-size: 32px; align-items: flex-end; justify-content: center; width: 80%; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; height: 20%; margin-top: 20px; -unity-text-align: middle-left; color: rgb(255, 255, 255);" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
