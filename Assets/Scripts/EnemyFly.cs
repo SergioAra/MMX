@@ -6,10 +6,10 @@ using Pathfinding;
 public class EnemyFly : MonoBehaviour
 {
     [SerializeField] private float followRadius = 8f;
-    private bool bFollowPlayer;
+    private bool bDestroyed = false;
     private AIPath myPath;
     private HealthComp healthComp;
-    static AudioSource audioSrc;
+    private AudioSource audioSrc;
     public static AudioClip mosquito;
     Animator objectAnimator;
     public static AudioClip  mosquitoDeath;
@@ -31,9 +31,13 @@ public class EnemyFly : MonoBehaviour
     void Update()
     {
         ChangeFollowPlayer();
-        if (objectAnimator.GetBool("Destroyed") == true)
+        if (objectAnimator.GetBool("Destroyed") == true && audioSrc && !bDestroyed)
         {
-            audioSrc.PlayOneShot(mosquitoDeath);
+            bDestroyed = true;
+            //audioSrc.PlayOneShot(mosquitoDeath);
+            audioSrc.clip = mosquitoDeath;
+            audioSrc.loop = false;
+            audioSrc.Play();
         }
     }
 

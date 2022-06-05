@@ -15,7 +15,7 @@ public class EnemyTurret : MonoBehaviour
     private float lastFireTime = 0;
     Animator objectAnimator;
     bool explode = false;
-    private int cantidadEnemigos;
+
     // Start is called before the first frame update
     void Start()
     {

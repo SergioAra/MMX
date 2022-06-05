@@ -33,7 +33,7 @@ public class Bullet : MonoBehaviour
     {
         if (col.gameObject != owner)
         {
-            //SoundManager.PlaySound("bulletImpact");
+            SoundManager.PlaySound("bulletImpact");
             myAnim.SetBool("Destroyed", true);
             myBody.velocity = new Vector2(0f, 0f);
             myBody.simulated = false;

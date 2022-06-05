@@ -9,7 +9,7 @@ public class ExternalVariables : MonoBehaviour
 {
 
     [SerializeField] TextMeshProUGUI txt;
-    private int cantidadEnemigos;
+    private int enemiesLeft;
     private bool win = false;
     // Start is called before the first frame update
     void Start()
@@ -20,9 +20,9 @@ public class ExternalVariables : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cantidadEnemigos= GameObject.FindGameObjectsWithTag("Enemy").Length;
-        txt.text = "Enemigos restantes: " + cantidadEnemigos;
-        if (cantidadEnemigos == 0)
+        enemiesLeft= GameObject.FindGameObjectsWithTag("Enemy").Length;
+        txt.text = "Enemies Left: " + enemiesLeft;
+        if (enemiesLeft == 0)
         {
             Invoke("showWinInterface", 1f);
             Invoke("pause", 1.5f);
@@ -32,7 +32,7 @@ public class ExternalVariables : MonoBehaviour
     void showWinInterface()
     {
         if (!win)
-        {
+        {         
             SceneManager.LoadScene("Win", LoadSceneMode.Additive);
             win = true;
         }

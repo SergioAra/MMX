@@ -44,6 +44,7 @@ public class UIController : MonoBehaviour
 
     void  StartGame()
     {
-       SceneManager.LoadScene("Level", LoadSceneMode.Single);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Level", LoadSceneMode.Single);
     } 
 }

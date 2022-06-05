@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class HealthComp : MonoBehaviour
 {
-    private bool destroyed = false;
+    public bool destroyed = false;
     [SerializeField] private int health = 1;
     public GameObject healthBar;
     [SerializeField] Slider slider;
